@@ -12,7 +12,7 @@ public class UserTest {
 		//System.out.println(testUser);
 
 	}
-	
+	//TODO1&2
 	public static void testUserConstructor() {
 		String test_username = "mike";
 		String test_password = "my_password";
@@ -20,7 +20,21 @@ public class UserTest {
 		String test_last_name = "Smith";
 		String test_mobile_number = "07771234567";
 		
+		
+		
 		User testUser = new User(test_username,test_password,test_first_name,test_last_name,test_mobile_number);
+		
+		//using asserts
+				assert testUser.getUsername()== test_username;
+				//assert 1==2;
+				//TODO4: add the other assertions like the one above, to verify the other four fields of the class.
+				
+				assert testUser.getPassword()== test_password;
+				assert testUser.getFirst_name()== test_first_name;
+				assert testUser.getLast_name()== test_last_name;
+				assert testUser.getMobile_number()== test_mobile_number;
+				
+				System.out.println("All Java assertions in the test suite passed (none failed)");
 		
 		if(testUser.getUsername()== test_username)
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC1 passed" + TestUtils.TEXT_COLOR_RESET);
@@ -52,5 +66,7 @@ public class UserTest {
 			else
 				System.out.println(TestUtils.TEXT_COLOR_RED + "TestConstructor-TC5 failed: mobile number did not match" + TestUtils.TEXT_COLOR_RESET);
 	}
+	
+	
 
 }
