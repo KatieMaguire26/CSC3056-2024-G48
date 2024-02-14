@@ -27,7 +27,7 @@ public class SimpleBankingApp {
 		
 		aUser = new User("julia.roberts@gmail.com", "change_me",   "Julia", "roberts",   "07770123456");
 		//users.add(aUser); ---> THE HIDDEN DEFECT
-		
+		//TESTING COMMIT
 	}
 	
 	public static void printAllUsers() {
