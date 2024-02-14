@@ -26,7 +26,7 @@ public class SimpleBankingApp {
 		users.add(aUser);
 		
 		aUser = new User("julia.roberts@gmail.com", "change_me",   "Julia", "roberts",   "07770123456");
-		users.add(aUser); 
+		//users.add(aUser); ---> THE HIDDEN DEFECT
 		
 	}
 	
