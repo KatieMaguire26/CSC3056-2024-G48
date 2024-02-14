@@ -15,7 +15,7 @@ public class SimpleBankingApp {
 	public static Vector<Account> accounts  = new Vector<Account>();
 	public static Vector<Transaction> transactions =  new Vector<Transaction>();
 	
-	public static void loadUserData() {
+	public static void loadUserData() {//
 		// structure of each record: username (email address), password, first_name, last_name, mobile_number
 		
 		// in the ideal case (real deployment of the app), we will read from file or database, but let's hard-code for now

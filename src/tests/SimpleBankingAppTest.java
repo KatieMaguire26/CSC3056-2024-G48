@@ -20,7 +20,7 @@ public class SimpleBankingAppTest {
 		//TODO7
 		
 		// 2-Exercise phase
-		SimpleBankingApp.loadUserData();
+		SimpleBankingApp.loadUserData();//
 
 		// 3-Verify phase
 		// we see in the load function of the UUT that we have loaded 3 users, so let's verify that
