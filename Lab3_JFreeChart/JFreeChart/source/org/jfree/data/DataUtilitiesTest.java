@@ -1,5 +1,4 @@
 package org.jfree.data;
-
 import static org.junit.Assert.*;
 
 import org.jfree.data.DataUtilities;
@@ -27,36 +26,63 @@ public class DataUtilitiesTest {
         values2D = null;
     }
 
+    
+    
+
+    
     @Test
     // TC 1: Valid (Not-null) data and valid column index
     public void testCalculateColumnTotal_ValidDataAndColumn() {
         assertEquals("Incorrect sum for valid data and column", 5.0, DataUtilities.calculateColumnTotal(values2D, 0), 0.0000001d);
     }
 
+   
+    
     @Test
     // TC 2: Null data and valid column index
-    (expected = IllegalArgumentException.class)
-    
     public void testCalculateColumnTotal_NullData() {
-        DataUtilities.calculateColumnTotal(null, 0);
+        try {
+            // Create a Values2D object with null data
+            Values2D data = null;
+            DataUtilities.calculateColumnTotal(data, 0);
+            fail("Expected IllegalArgumentException was not thrown");
+        } catch (IllegalArgumentException e) {
+            // The exception is expected, so the test should pass
+            assertTrue(true);
+        } catch (Exception e) {
+            // Unexpected exception, fail the test
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
 
     @Test
     // TC 3: Valid (Not-null) data and invalid column index
-    (expected = IllegalArgumentException.class)
-    
     public void testCalculateColumnTotal_InvalidColumn() {
-        DataUtilities.calculateColumnTotal(values2D, -1);
+        try {
+            DataUtilities.calculateColumnTotal(values2D, -1);
+            fail("Expected IllegalArgumentException was not thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
 
     @Test
-    // TC 4: Null data and invalid column index
-    (expected = IllegalArgumentException.class)
-    
-    public void testCalculateColumnTotal_NullDataAndInvalidColumn() {
-        DataUtilities.calculateColumnTotal(null, -1);
-    }
-    
+ // TC 4: Null data and invalid column index
+ public void testCalculateColumnTotal_NullDataAndInvalidColumn() {
+     try {
+         DataUtilities.calculateColumnTotal(null, -1);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+        
+        
+
     
     //Boundary Value Analysis Tests
     
@@ -76,32 +102,51 @@ public class DataUtilitiesTest {
         assertEquals(expected, DataUtilities.calculateColumnTotal(values2D, column), 0.0001);
     }
 
-    @Test
-    // TC 7: Null data
-    (expected = IllegalArgumentException.class)
-    public void testCalculateColumnTotal_NullData1() {
-        values2D = null;
-        int column = 0;
-        DataUtilities.calculateColumnTotal(values2D, column);
-    }
-
-    @Test
-    // TC 8: Negative column index
-    (expected = IllegalArgumentException.class)
-    public void testCalculateColumnTotal_NegativeColumnIndex() {
-        int column = -1; 
-        DataUtilities.calculateColumnTotal(values2D, column);
-    }
-
-    @Test
-    // TC 9: Out of bounds column index
-    (expected = IllegalArgumentException.class)
-    public void testCalculateColumnTotal_OutOfBoundsColumnIndex() {
-        int column = values2D.getColumnCount(); 
-        DataUtilities.calculateColumnTotal(values2D, column);
-    }
-
     
+
+    @Test
+ // TC 7: Null data
+ public void testCalculateColumnTotal_NullData1() {
+     try {
+         values2D = null;
+         int column = 0;
+         DataUtilities.calculateColumnTotal(values2D, column);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
+ @Test
+ // TC 8: Negative column index
+ public void testCalculateColumnTotal_NegativeColumnIndex() {
+     try {
+         int column = -1; 
+         DataUtilities.calculateColumnTotal(values2D, column);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
+ @Test
+ // TC 9: Out of bounds column index
+ public void testCalculateColumnTotal_OutOfBoundsColumnIndex() {
+     try {
+         int column = values2D.getColumnCount(); 
+         DataUtilities.calculateColumnTotal(values2D, column);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
     
     @Test
     // Test case 10: Valid (Not-null) data and valid row index
@@ -109,23 +154,47 @@ public class DataUtilitiesTest {
         assertEquals("Incorrect sum for valid data and row", 1.0, DataUtilities.calculateRowTotal(values2D, 0), 0.0000001d);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    // Test case 11: Null data and valid row index
-    public void testCalculateRowTotal_NullData() {
-        DataUtilities.calculateRowTotal(null, 0);
-    }
+    
+    
+  @Test
+ // Test case 11: Null data and valid row index
+ public void testCalculateRowTotal_NullData() {
+     try {
+         DataUtilities.calculateRowTotal(null, 0);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
 
-    @Test(expected = IllegalArgumentException.class)
-    // Test case 12: Valid (Not-null) data and invalid row index
-    public void testCalculateRowTotal_InvalidRow() {
-        DataUtilities.calculateRowTotal(values2D, -1);
-    }
+ @Test
+ // Test case 12: Valid (Not-null) data and invalid row index
+ public void testCalculateRowTotal_InvalidRow() {
+     try {
+         DataUtilities.calculateRowTotal(values2D, -1);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
 
-    @Test(expected = IllegalArgumentException.class)
-    // Test case 13: Null data and invalid row index
-    public void testCalculateRowTotal_NullDataAndInvalidRow() {
-        DataUtilities.calculateRowTotal(null, -1);
-    }
+ @Test
+ // Test case 13: Null data and invalid row index
+ public void testCalculateRowTotal_NullDataAndInvalidRow() {
+     try {
+         DataUtilities.calculateRowTotal(null, -1);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
     
     
     //Boundary Value Analysis Tests
@@ -142,23 +211,35 @@ public class DataUtilitiesTest {
         assertEquals("Sum of values in last row should be 4", 4.0, DataUtilities.calculateRowTotal(values2D, values2D.getRowCount() - 1), 0.0000001d);
     }
 
-    // TC16: Null data, column index = 0
-    @Test(expected = IllegalArgumentException.class)
-    public void testCalculateRowTotal_NullData1() {
-        DataUtilities.calculateRowTotal(null, 0);
-    }
+    
+    
+    
+    @Test
+ // TC17: Valid (Non-null, 1+ rows, 1+ columns), invalid column index = -1
+ public void testCalculateRowTotal_InvalidRowIndex_Negative() {
+     try {
+         DataUtilities.calculateRowTotal(values2D, -1);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
 
-    // TC17: Valid (Non-null, 1+ rows, 1+ columns), invalid column index = -1
-    @Test(expected = IllegalArgumentException.class)
-    public void testCalculateRowTotal_InvalidRowIndex_Negative() {
-        DataUtilities.calculateRowTotal(values2D, -1);
-    }
+ @Test
+ // TC18: Valid (Non-null, 1+ rows, 1+ columns), invalid column index = numRows
+ public void testCalculateRowTotal_InvalidRowIndex_OutOfBounds() {
+     try {
+         DataUtilities.calculateRowTotal(values2D, values2D.getRowCount());
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
 
-    // TC18: Valid (Non-null, 1+ rows, 1+ columns), invalid column index = numRows
-    @Test(expected = IllegalArgumentException.class)
-    public void testCalculateRowTotal_InvalidRowIndex_OutOfBounds() {
-        DataUtilities.calculateRowTotal(values2D, values2D.getRowCount());
-    }
 
     @Test
     /*createNumberArray Function Valid 
@@ -190,11 +271,19 @@ public class DataUtilitiesTest {
         }
     }
 
-    // TC20, TC22: Null data
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreateNumberArray_NullData() {
-        DataUtilities.createNumberArray(null);
-    }
+    @Test
+ // TC20, TC22: Null data
+ public void testCreateNumberArray_NullData() {
+     try {
+         DataUtilities.createNumberArray(null);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
     
     
     
@@ -221,11 +310,19 @@ public class DataUtilitiesTest {
         }
     }
 
-    // TC24, TC26: Null data
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreateNumberArray2D_NullData() {
-        DataUtilities.createNumberArray2D(null);
-    }
+    @Test
+ // TC24, TC26: Null data
+ public void testCreateNumberArray2D_NullData() {
+     try {
+         DataUtilities.createNumberArray2D(null);
+         fail("Expected IllegalArgumentException was not thrown");
+     } catch (IllegalArgumentException e) {
+         assertTrue(true);
+     } catch (Exception e) {
+         fail("Unexpected exception: " + e.getMessage());
+     }
+ }
+
     
 
     // TC27, TC29: Valid (Not-null)
@@ -249,4 +346,150 @@ public class DataUtilitiesTest {
     public void testGetCumulativePercentages_NullData() {
         DataUtilities.getCumulativePercentages(null);
     }
+    
+    
+    //TC31
+    @Test 
+    public void testCalculateColumnTotal_ValidDataWithNonNullValues() {
+        try {            
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10); 
+            data.addValue(1, 0, 20);            
+            double total = DataUtilities.calculateColumnTotal(data, 0);            
+            assertEquals(30.0, total, 0.001); 
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    //TC32
+    @Test
+    public void testCalculateColumnTotal_NullData11() {
+        try {            
+            double total = DataUtilities.calculateColumnTotal(null, 0);            
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    //TC33
+    @Test
+    public void testCalculateColumnTotal_InvalidColumnIndex() {
+        try {            
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10);            
+            double total = DataUtilities.calculateColumnTotal(data, -1);            
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    //TC34
+    @Test
+    public void testCalculateColumnTotal_DataWithNullValues() {
+        try {            
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10); 
+            data.addValue(1, 0, null);           
+            double total = DataUtilities.calculateColumnTotal(data, 0);            
+            assertEquals(10.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    //TC35
+    @Test
+    public void testCalculateColumnTotal_WithNullValue() {
+        try {            
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, null);            
+            double total = DataUtilities.calculateColumnTotal(data, 0);            
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+
+
+    
+    //TC36
+    @Test
+    public void testCalculateRowTotal_ValidDataWithNonNullValues() {
+        try {           
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10); 
+            data.addValue(0, 1, 20);             
+            double total = DataUtilities.calculateRowTotal(data, 0);            
+            assertEquals(30.0, total, 0.001); 
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+    
+    
+    //TC37
+    @Test
+    public void testCalculateRowTotalNullData() {
+        try {          
+            double total = DataUtilities.calculateRowTotal(null, 0);            
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    
+    //TC38
+    @Test
+    public void testCalculateRowTotal_InvalidRowIndex() {
+        try {            
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10);             
+            double total = DataUtilities.calculateRowTotal(data, -1);            
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    
+    //TC39
+    @Test
+    public void testCalculateRowTotal_DataWithNullValues() {
+        try {          
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, 10); 
+            data.addValue(0, 1, null); 
+            double total = DataUtilities.calculateRowTotal(data, 0);
+            assertEquals(10.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+    
+    
+    //TC40
+    @Test
+    public void testCalculateRowTotal_WithNullValue() {
+        try {
+            DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+            data.addValue(0, 0, null); 
+            double total = DataUtilities.calculateRowTotal(data, 0);
+            assertEquals(0.0, total, 0.001);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+    
+    
 }
+ 
+
+
+
+
+
